@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product: one
+  coupon_type: 1
+  value: 9.99
+  expiration: 2023-04-21 16:54:51
+  status: 1
+
+two:
+  product: two
+  coupon_type: 1
+  value: 9.99
+  expiration: 2023-04-21 16:54:51
+  status: 1
