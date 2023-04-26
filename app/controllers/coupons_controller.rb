@@ -17,6 +17,9 @@ class CouponsController < ApplicationController
   #   binding.pry
   # end
 
+  def validate
+  end
+
   def new
     # @coupon = Coupon.new
   end

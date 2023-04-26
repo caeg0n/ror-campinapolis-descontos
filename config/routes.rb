@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   get "organization/admin" => "organizations#admin"
   get "organization/admin_options" => "organizations#admin_options"
   get "coupon/new" => "coupons#new"
+  get "coupon/validate" => "coupons#validate"
+
+  get "/service_worker.js" => "service_worker#service_worker"
+  get "/manifest.json" => "service_worker#manifest"
 end

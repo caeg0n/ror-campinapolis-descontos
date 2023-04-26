@@ -8,9 +8,8 @@ class OrganizationsController < ApplicationController
   # end 
   def admin_options
     option = params.permit(:option)[:option]
-    if option == "new"
-      redirect_to controller: 'coupons', action: 'new'
-    end
+    redirect_to controller: 'coupons', action: 'new' if option == "new"
+    redirect_to controller: 'coupons', action: 'validate' if option == "validate"
   end
 
   def admin
