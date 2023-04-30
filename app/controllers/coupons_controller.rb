@@ -18,6 +18,9 @@ class CouponsController < ApplicationController
   # end
 
   def validate
+    session[:command] = "validate"
+    ActionCable.server.broadcast 'control_channel',session
+    redirect_to root_path
   end
 
   def new
@@ -28,8 +31,7 @@ class CouponsController < ApplicationController
   # end
 
   def create
-    @coupon = Coupon.new(coupon_params)
-
+    # @coupon = Coupon.new(coupon_params)
     respond_to do |format|
       if @coupon.save
         format.html { redirect_to coupon_url(@coupon), notice: "Coupon was successfully created." }
@@ -41,25 +43,25 @@ class CouponsController < ApplicationController
     end
   end
 
-  def update
-    respond_to do |format|
-      if @coupon.update(coupon_params)
-        format.html { redirect_to coupon_url(@coupon), notice: "Coupon was successfully updated." }
-        format.json { render :show, status: :ok, location: @coupon }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @coupon.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @coupon.update(coupon_params)
+  #       format.html { redirect_to coupon_url(@coupon), notice: "Coupon was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @coupon }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @coupon.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
-  def destroy
-    @coupon.destroy
-    respond_to do |format|
-      format.html { redirect_to coupons_url, notice: "Coupon was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @coupon.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to coupons_url, notice: "Coupon was successfully destroyed." }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     def set_coupon

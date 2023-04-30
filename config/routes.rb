@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   }
   root "home#index"
   get "/home" => "home#index"
+  get "/home/:id" => "home#set_device"
   get "organization/admin" => "organizations#admin"
   get "organization/admin_options" => "organizations#admin_options"
   get "coupon/new" => "coupons#new"
