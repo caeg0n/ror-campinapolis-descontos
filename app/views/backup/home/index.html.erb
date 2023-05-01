@@ -1,0 +1,54 @@
+<%#= render partial: "preloader" %>
+<!-- Header Area -->
+<%= render partial: "header_area" %>
+<div
+  class="offcanvas offcanvas-start suha-offcanvas-wrap"
+  tabindex="-1"
+  id="suhaOffcanvas"
+  aria-labelledby="suhaOffcanvasLabel"
+>
+  <!-- Close button-->
+  <button
+    class="btn-close btn-close-white"
+    type="button"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close"
+  ></button>
+  <!-- Offcanvas body-->
+  <div class="offcanvas-body">
+    <!-- Sidenav Profile-->
+    <%= render partial: "sidenav_profile" %>
+    <!-- Sidenav Nav-->
+    <%= render partial: "layouts/sidenav_nav" %>
+  </div>
+</div>
+<!-- PWA Install Alert -->
+<%#= render partial: "pwa_install_alert" %>
+
+<div class="page-content-wrapper">
+  <!-- Search Form--> <!-- Search Form-->
+  <%= render partial: "search_form" %>
+  <!-- Hero Wrapper -->
+  <%#= render partial: "hero_wrapper" %>
+  <!-- Product Catagories -->
+  <%= render partial: "product_categories" %>
+  <!-- Flash Sale Slide -->
+  <%= render partial: "flash_sale_slide" %>
+  <!-- Dark Mode -->
+  <%#= render partial: "dark_mode" %>
+  <!-- Top Products -->
+  <%= render partial: "top_products" %>
+  <!-- CTA Area -->
+  <%#= render partial: "cta_area" %>
+  <!-- Weekly Best Sellers-->
+  <%= render partial: "weekly_best_sellers" %>
+  <!-- Discount Coupon Card-->
+  <%#= render partial: "discount_coupon_card" %>
+  <!-- Featured Products Wrapper-->
+  <%= render partial: "featured_products_wrapper" %>
+  <%= render partial: "collections" %>
+</div>
+<!-- Internet Connection Status-->
+<div class="internet-connection-status" id="internetStatus"></div>
+<!-- Footer Nav-->
+<%= render partial: "layouts/footer_nav" %>

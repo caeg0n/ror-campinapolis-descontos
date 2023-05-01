@@ -5,6 +5,11 @@ class ControlChannel < ApplicationCable::Channel
     ActionCable.server.broadcast 'control_channel',dados
   end
 
+  def receive(data)
+    binding.pry
+    # ActionCable.server.broadcast("chat_#{params[:room]}", data)
+  end
+
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
