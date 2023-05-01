@@ -15,7 +15,7 @@ gem "bootsnap", require: false
 gem "bootstrap",  '= 5.2.3'
 gem "simple_form", '= 5.2.0'
 gem "devise", "= 4.9.2"
-
+gem "rqrcode", "~> 2.1"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -36,4 +36,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-

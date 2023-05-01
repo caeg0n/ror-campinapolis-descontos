@@ -20,7 +20,7 @@ class CouponsController < ApplicationController
   def validate
     session[:command] = "validate"
     ActionCable.server.broadcast 'control_channel',session
-    redirect_to root_path
+    #redirect_to root_path
   end
 
   def new
@@ -69,6 +69,6 @@ class CouponsController < ApplicationController
     end
 
     def coupon_params
-      params.require(:coupon).permit(:product_id, :coupon_type, :value, :expiration, :status)
+      params.require(:coupon).permit(:qrcode,:product_id, :coupon_type, :value, :expiration, :status)
     end
 end
