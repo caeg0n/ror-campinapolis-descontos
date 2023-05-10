@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  #resources :coupons
+  # resources :coupon_sales
+  # resources :coupon_products
+  # resources :products
+  # resources :product_categories
+  # resources :organizations
+  # resources :organization_categories
+  # resources :clients
+  # #resources :coupons
   #resources :products
   #resources :product_categories
   #resources :organizations
@@ -16,6 +23,8 @@ Rails.application.routes.draw do
   get "organization/admin_options" => "organizations#admin_options"
   get "coupon/new" => "coupons#new"
   get "coupon/validate" => "coupons#validate"
+  get "coupon/check_success" => "coupons#check_success"
+  get "coupon/check_fail" => "coupons#check_fail"
 
   get "/service_worker.js" => "service_worker#service_worker"
   get "/manifest.json" => "service_worker#manifest"

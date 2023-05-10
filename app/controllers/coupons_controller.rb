@@ -17,6 +17,12 @@ class CouponsController < ApplicationController
   #   binding.pry
   # end
 
+  def check_success
+  end
+
+  def check_fail
+  end
+
   def validate
     session[:command] = "validate"
     ActionCable.server.broadcast 'control_channel',session

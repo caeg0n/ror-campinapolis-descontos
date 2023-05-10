@@ -28,6 +28,7 @@ config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.active_record.verbose_query_logs = true
   config.assets.quiet = false
   config.assets.debug = true
+  #ActionCable.server.config.logger = Logger.new(nil)
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
   # Annotate rendered view with file names.

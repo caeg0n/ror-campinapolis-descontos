@@ -43,7 +43,6 @@ task :migrations do
   FileUtils.cp("#{project_path}/app/models/backup/coupon_product.rb","#{project_path}/app/models") if File.exist?("#{project_path}/app/models/backup/coupon_product.rb")
   FileUtils.cp("#{project_path}/app/models/backup/coupon_sale.rb","#{project_path}/app/models") if File.exist?("#{project_path}/app/models/backup/coupon_sale.rb")
   
-
   FileUtils.rm Dir.glob("#{project_path}/app/models/backup/organization_category.rb")
   FileUtils.rm Dir.glob("#{project_path}/app/models/backup/organization.rb")
   FileUtils.rm Dir.glob("#{project_path}/app/models/backup/product_category.rb")

@@ -1,6 +1,5 @@
 class OrganizationCategoriesController < ApplicationController
   before_action :set_organization_category, only: %i[ show edit update destroy ]
-  
 
   # GET /organization_categories or /organization_categories.json
   def index

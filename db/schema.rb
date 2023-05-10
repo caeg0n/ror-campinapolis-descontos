@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_21_195450) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_01_201848) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_195450) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "coupons", force: :cascade do |t|
+  create_table "coupon_products", force: :cascade do |t|
     t.integer "product_id", null: false
     t.integer "coupon_type"
     t.decimal "value"
@@ -31,7 +31,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_195450) do
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_coupons_on_product_id"
+    t.index ["product_id"], name: "index_coupon_products_on_product_id"
+  end
+
+  create_table "coupon_sales", force: :cascade do |t|
+    t.integer "coupon_type"
+    t.decimal "value"
+    t.datetime "expiration"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "organization_categories", force: :cascade do |t|
@@ -78,7 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_195450) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "coupons", "products"
+  add_foreign_key "coupon_products", "products"
   add_foreign_key "organizations", "categories"
   add_foreign_key "products", "organizations"
   add_foreign_key "products", "product_categories"
