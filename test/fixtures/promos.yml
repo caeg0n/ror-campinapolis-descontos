@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organization: one
+  coupon_price: 9.99
+  expiration: 2023-05-12 16:48:59
+  status: 1
+
+two:
+  organization: two
+  coupon_price: 9.99
+  expiration: 2023-05-12 16:48:59
+  status: 1

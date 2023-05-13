@@ -29,6 +29,7 @@ group :development do
 	gem 'listen'
 	gem 'spring'
 	gem 'spring-watcher-listen'
+  gem 'htmlbeautifier'
 end
 
 group :test do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_01_201848) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_12_194903) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -24,23 +24,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_201848) do
   end
 
   create_table "coupon_products", force: :cascade do |t|
+    t.integer "promo_id", null: false
     t.integer "product_id", null: false
     t.integer "coupon_type"
-    t.decimal "value"
-    t.datetime "expiration"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_coupon_products_on_product_id"
+    t.index ["promo_id"], name: "index_coupon_products_on_promo_id"
   end
 
   create_table "coupon_sales", force: :cascade do |t|
+    t.integer "promo_id", null: false
     t.integer "coupon_type"
-    t.decimal "value"
-    t.datetime "expiration"
     t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["promo_id"], name: "index_coupon_sales_on_promo_id"
   end
 
   create_table "organization_categories", force: :cascade do |t|
@@ -75,6 +75,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_201848) do
     t.index ["product_category_id"], name: "index_products_on_product_category_id"
   end
 
+  create_table "promos", force: :cascade do |t|
+    t.integer "organization_id", null: false
+    t.decimal "coupon_price"
+    t.datetime "expiration"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_promos_on_organization_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -88,7 +98,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_201848) do
   end
 
   add_foreign_key "coupon_products", "products"
+  add_foreign_key "coupon_products", "promos"
+  add_foreign_key "coupon_sales", "promos"
   add_foreign_key "organizations", "categories"
   add_foreign_key "products", "organizations"
   add_foreign_key "products", "product_categories"
+  add_foreign_key "promos", "organizations"
 end

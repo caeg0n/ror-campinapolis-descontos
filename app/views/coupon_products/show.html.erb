@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @coupon_product %>
+
+<div>
+  <%= link_to "Edit this coupon product", edit_coupon_product_path(@coupon_product) %> |
+  <%= link_to "Back to coupon products", coupon_products_path %>
+
+  <%= button_to "Destroy this coupon product", @coupon_product, method: :delete %>
+</div>

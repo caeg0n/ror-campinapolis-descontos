@@ -38,9 +38,7 @@
               > %>
               <%= f.password_field :password, autocomplete: "current-password", class: "form-control",placeholder:"Senha" %>
             </div>
-            <label for="customRange1" class="form-label">Example range</label>
-            <input type="range" class="form-range" id="slider">
-            <span id="slider_value">Nothing yet.</span>
+            
             <%= f.submit "ENTRAR", :class => 'btn btn-warning btn-lg w-100' %>
             <%# <button class="btn btn-warning btn-lg w-100" type="submit">ENTRAR</button> %>
           <% end %>
@@ -55,8 +53,3 @@
     </div>
   </div>
 </div>
-<script>
-$(document).on('input', '#slider', function() {
-    $('#slider_value').html( $(this).val() );
-});
-</script>

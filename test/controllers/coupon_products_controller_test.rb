@@ -17,7 +17,7 @@ class CouponProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create coupon_product" do
     assert_difference("CouponProduct.count") do
-      post coupon_products_url, params: { coupon_product: { coupon_type: @coupon_product.coupon_type, expiration: @coupon_product.expiration, product_id: @coupon_product.product_id, status: @coupon_product.status, value: @coupon_product.value } }
+      post coupon_products_url, params: { coupon_product: { coupon_type: @coupon_product.coupon_type, product_id: @coupon_product.product_id, promo_id: @coupon_product.promo_id, status: @coupon_product.status } }
     end
 
     assert_redirected_to coupon_product_url(CouponProduct.last)
@@ -34,7 +34,7 @@ class CouponProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update coupon_product" do
-    patch coupon_product_url(@coupon_product), params: { coupon_product: { coupon_type: @coupon_product.coupon_type, expiration: @coupon_product.expiration, product_id: @coupon_product.product_id, status: @coupon_product.status, value: @coupon_product.value } }
+    patch coupon_product_url(@coupon_product), params: { coupon_product: { coupon_type: @coupon_product.coupon_type, product_id: @coupon_product.product_id, promo_id: @coupon_product.promo_id, status: @coupon_product.status } }
     assert_redirected_to coupon_product_url(@coupon_product)
   end
 

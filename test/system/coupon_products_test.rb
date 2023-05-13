@@ -15,10 +15,9 @@ class CouponProductsTest < ApplicationSystemTestCase
     click_on "New coupon product"
 
     fill_in "Coupon type", with: @coupon_product.coupon_type
-    fill_in "Expiration", with: @coupon_product.expiration
     fill_in "Product", with: @coupon_product.product_id
+    fill_in "Promo", with: @coupon_product.promo_id
     fill_in "Status", with: @coupon_product.status
-    fill_in "Value", with: @coupon_product.value
     click_on "Create Coupon product"
 
     assert_text "Coupon product was successfully created"
@@ -30,10 +29,9 @@ class CouponProductsTest < ApplicationSystemTestCase
     click_on "Edit this coupon product", match: :first
 
     fill_in "Coupon type", with: @coupon_product.coupon_type
-    fill_in "Expiration", with: @coupon_product.expiration
     fill_in "Product", with: @coupon_product.product_id
+    fill_in "Promo", with: @coupon_product.promo_id
     fill_in "Status", with: @coupon_product.status
-    fill_in "Value", with: @coupon_product.value
     click_on "Update Coupon product"
 
     assert_text "Coupon product was successfully updated"
