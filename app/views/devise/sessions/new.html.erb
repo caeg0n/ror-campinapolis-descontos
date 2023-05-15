@@ -16,8 +16,10 @@
       <div class="col-10 col-lg-8"><img class="big-logo" src="/img/core-img/logo-white.png" alt="">
         <!-- Register Form-->
         <div class="register-form mt-5">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
+          <% if not flash.empty? %>
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+          <% end %>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-group text-start mb-4"><span>Usuário</span>
               <label for="username"><i class="fa-solid fa-user"></i></label>
@@ -38,7 +40,6 @@
               > %>
               <%= f.password_field :password, autocomplete: "current-password", class: "form-control",placeholder:"Senha" %>
             </div>
-            
             <%= f.submit "ENTRAR", :class => 'btn btn-warning btn-lg w-100' %>
             <%# <button class="btn btn-warning btn-lg w-100" type="submit">ENTRAR</button> %>
           <% end %>

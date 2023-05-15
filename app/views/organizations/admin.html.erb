@@ -10,6 +10,8 @@
           <p class="mb-4 text-white">We will send you an OTP on this phone number.</p>
         </div>
         <!-- OTP Send Form-->
+        <span class="notice text-white"><%= notice %></span>
+        <span class="alert text-white"><%= alert %></span>
         <%= render partial: "organizations/admin/otp_form" %>
         <!-- Term & Privacy Info-->
         <div class="login-meta-data">
@@ -19,3 +21,4 @@
     </div>
   </div>
 </div>
+<% flash.clear %>

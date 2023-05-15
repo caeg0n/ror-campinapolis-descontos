@@ -11,68 +11,120 @@
       <div class="col-10 col-lg-8">
         <h2 class="mb-4 text-white">Nova Campanha</h2>
         <div class="login-meta-data">
-          <p class="mt-3 mb-0">Crie até 100 cupons de desconto para sua campanha</p>
+          <p class="mt-3 mb-0">Crie até 100 cupons de desconto de até R$100 cada e atraia compradores mais rapidamente</p>
         </div>
         <!-- Register Form-->
+        <% if not flash.empty? %>
+          <% if flash['promos_create_promo_mode_error'].present? %>
+            <br>
+            <span class="notice btn btn-danger btn-lg w-100 text-white"><%= flash['promos_create_promo_mode_error'] %></span>
+          <% end %>
+          <% if flash['promos_create_price_error'].present? %>
+            <br>
+            <span class="notice btn btn-danger btn-lg w-100 text-white"><%= flash['promos_create_price_error'] %></span>
+          <% end %>
+          <% if flash['promos_create_coupon_type_error'].present? %>
+            <br>
+            <span class="notice btn btn-danger btn-lg w-100 text-white"><%= flash['promos_create_coupon_type_error'] %></span>
+          <% end %>
+          <% if flash['promos_create_coupon_quantity_error'].present? %>
+            <br>
+            <span class="notice btn btn-danger btn-lg w-100 text-white"><%= flash['promos_create_coupon_quantity_error'] %></span>
+          <% end %>
+          <% if flash['promos_create_coupon_expiration_error'].present? %>
+            <br>
+            <span class="notice btn btn-danger btn-lg w-100 text-white"><%= flash['promos_create_coupon_expiration_error'] %></span>
+          <% end %>
+          <% if flash['notice'].present? %>
+            <span class="notice text-white"><%= notice %></span>
+          <% end %>
+          <% if flash['notice'].present? %>
+            <span class="alert text-white"><%= alert %></span>
+          <% end %>
+          <% flash.clear %>
+        <% end %>
         <div class="register-form mt-5">
-          <form action="otp.html" method="">
-            
-            <label for="customRange1" class="form-label">Example range</label>
-            <input type="range" class="form-range" id="slider">
-            <span id="slider_value">Nothing yet.</span>
-            
-            
-            <div class="form-group text-start mb-4"><span class="mb-2">Tipo do Cupom*</span>
+          <form accept-charset="UTF-8" action="/promo/create" method="post">
+            <div class="form-group text-start mb-4">
+              <div class="form-check">
+                <input name="promo[is_test_mode]" class="form-check-input" id="is_test_mode" type="checkbox" value="checked">
+                <label class="form-check-label fz-14 text-white" for="acceptTerms">Campanha em modo de Teste </label>
+                <%# <a class="fz-14 text-warning text-decoration-underline" href="privacy-policy.html">terms &amp; conditions.</a> %>
+              </div>
+            </div>
+            <label for="customRange1" class="form-label fz-14 text-white" id="slider_quantidade_value">Quantidade de Cupons: 1</label>
+            <input name="promo[coupon_quantity]" type="range" class="form-range" id="slider_quantidade" value="1" min="1" max="100">
+            <br>
+            <br>
+            <label for="customRange1" class="form-label fz-14 text-white" id="slider_preco_value">Valor do Cupon: R$1.00</label>
+            <input name="promo[coupon_price]" type="range" class="form-range" id="slider_preco" value="1" min="1.0" max="100.0" step="0.5">
+            <br>
+            <br>
+            <label for="customRange1" class="form-label fz-14 text-white" id="slider_validade_value">Cupom válido por: 1 dia</label>
+            <input name="promo[coupon_expiration]" type="range" class="form-range" id="slider_validade" value="1" min="1" max="365" step="1">
+            <br>
+            <br>
+            <div class="form-group text-start mb-6"><span class="mb-2">Tipo do Cupom*</span>
               <div class="row">
                 <div class="col-6">
                   <div class="form-check">
-                    <input class="form-check-input" id="personal" type="radio" name="accountType">
+                    <input name="promo[coupon_type]" id="coupon_type_product" class="form-check-input" type="radio" value="type_product" checked>
                     <label class="form-check-label text-white fz-14" for="personal">Desconto em produto</label>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-check">
-                    <input class="form-check-input" id="business" type="radio" name="accountType" checked>
+                    <input name="promo[coupon_type]" id="coupon_type_sale" class="form-check-input" type="radio" value="type_sale">
                     <label class="form-check-label text-white fz-14" for="business">Desconto em compra</label>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="form-group text-start mb-4"><span>Store Name*</span>
-              <label for="username"><i class="fa-solid fa-basket-shopping"></i></label>
-              <input class="form-control" id="username" type="text" placeholder="Designing World">
-            </div>
-            <div class="form-group text-start mb-4"><span>Location*</span>
-              <label for="location"><i class="fa-solid fa-location-dot"></i></label>
-              <input class="form-control" id="location" type="text" placeholder="New York">
-            </div>
-            <div class="form-group text-start mb-4"><span>Mobile Number*</span>
-              <label for="mobileNumber"><i class="fa-solid fa-phone"></i></label>
-              <input class="input-psswd form-control" id="mobileNumber" type="text" placeholder="+62 1234 7896 123">
-            </div>
-            <div class="form-group text-start mb-4"><span>Password*</span>
-              <label for="registerPassword"><i class="fa-solid fa-key"></i></label>
-              <input class="input-psswd form-control" id="registerPassword" type="password" placeholder="">
-            </div>
-            <div class="form-group text-start mb-4">
-              <div class="form-check">
-                <input class="form-check-input" id="acceptTerms" type="checkbox" value="">
-                <label class="form-check-label fz-14 text-white" for="acceptTerms">I have read and understood all the <a class="fz-14 text-warning text-decoration-underline" href="privacy-policy.html">terms &amp; conditions.</a></label>
+            <br>
+            <div id="product_select">
+              <span class="mb-2 text-start">Produto</span>
+              <div class="mb-4 d-flex rtl-flex-d-row-r">
+                <select id="product_selected" name="promo[product_selected]" aria-label="Default select example">
+                  <option value="1"> CAIXA DE CERVEJA 600ML </option>
+                  <option value="2"> CAIXA CAIXA DE CERVEJA 600ML</option>
+                </select>
               </div>
             </div>
-            <button class="btn btn-warning btn-lg w-100" type="submit">Sign Up</button>
+            <%# <div class="form-group text-start mb-4"><span>Store Name*</span>
+              <label for="username"><i class="fa-solid fa-basket-shopping"></i></label>
+              <input class="form-control" id="username" type="text" placeholder="Designing World">
+            </div> %>
+            <%# <div class="form-group text-start mb-4"><span>Location*</span>
+              <label for="location"><i class="fa-solid fa-location-dot"></i></label>
+              <input class="form-control" id="location" type="text" placeholder="New York">
+            </div> %>
+            <%# <div class="form-group text-start mb-4"><span>Mobile Number*</span>
+              <label for="mobileNumber"><i class="fa-solid fa-phone"></i></label>
+              <input class="input-psswd form-control" id="mobileNumber" type="text" placeholder="+62 1234 7896 123">
+            </div> %>
+            <%# <div class="form-group text-start mb-4"><span>Password*</span>
+              <label for="registerPassword"><i class="fa-solid fa-key"></i></label>
+              <input class="input-psswd form-control" id="registerPassword" type="password" placeholder="">
+            </div> %>
+            <button class="btn btn-warning btn-lg w-100" type="submit">Criar Campanha</button>
           </form>
         </div>
         <!-- Login Meta-->
-        <div class="login-meta-data">
+        <%# <div class="login-meta-data">
           <p class="mt-3 mb-0">Already have an store?<a class="ms-1" href="login.html">Log In</a></p>
-        </div>
+        </div> %>
       </div>
     </div>
   </div>
 </div>
 <script>
-$(document).on('input', '#slider', function() {
-    $('#slider_value').html( $(this).val() );
-});
+  $(document).on('input', '#slider_quantidade', function() {
+      $('#slider_quantidade_value').html( 'Quantidade de Cupons: '+ $(this).val() );
+  });
+  $(document).on('input', '#slider_preco', function() {
+      $('#slider_preco_value').html( 'Valor de Cada Cupons: R$'+ $(this).val() );
+  });
+  $(document).on('input', '#slider_validade', function() {
+      $('#slider_validade_value').html( 'Cupons Validos por: '+$(this).val()+' dias' );
+  });
 </script>
