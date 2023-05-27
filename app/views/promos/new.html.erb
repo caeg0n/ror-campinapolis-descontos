@@ -35,16 +35,20 @@
             <br>
             <span class="notice btn btn-danger btn-lg w-100 text-white"><%= flash['promos_create_coupon_expiration_error'] %></span>
           <% end %>
+          <% if flash['promos_create_coupon_product_selected_error'].present? %>
+            <br>
+            <span class="notice btn btn-danger btn-lg w-100 text-white"><%= flash['promos_create_coupon_product_selected_error'] %></span>
+          <% end %>
           <% if flash['notice'].present? %>
             <span class="notice text-white"><%= notice %></span>
           <% end %>
           <% if flash['notice'].present? %>
             <span class="alert text-white"><%= alert %></span>
           <% end %>
-          <% flash.clear %>
+          <%# flash.clear %>
         <% end %>
         <div class="register-form mt-5">
-          <form accept-charset="UTF-8" action="/promo/create" method="post">
+          <form accept-charset="UTF-8" action="/promo/create" method="post" data-remote=”true”>
             <div class="form-group text-start mb-4">
               <div class="form-check">
                 <input name="promo[is_test_mode]" class="form-check-input" id="is_test_mode" type="checkbox" value="checked">
@@ -84,7 +88,7 @@
             <div id="product_select">
               <span class="mb-2 text-start">Produto</span>
               <div class="mb-4 d-flex rtl-flex-d-row-r">
-                <select id="product_selected" name="promo[product_selected]" aria-label="Default select example">
+                <select class="form-select" id="product_selected" name="promo[product_selected]" aria-label="Default select example">
                   <option value="1"> CAIXA DE CERVEJA 600ML </option>
                   <option value="2"> CAIXA CAIXA DE CERVEJA 600ML</option>
                 </select>

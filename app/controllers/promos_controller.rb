@@ -3,9 +3,13 @@ class PromosController < ApplicationController
   before_action :authenticate_user!, only: %i[ new ]
 
   def new
-    # @promo = Promo.new
+    
   end
-  
+
+  def success
+    flash[:promos_create_coupon_product_ok] = "Produto Criado com Sucesso!"
+  end
+
   def create
     promo = Promo.new
     p = promo_params
@@ -15,7 +19,6 @@ class PromosController < ApplicationController
     coupon_expiration = p[:coupon_expiration].to_i if p[:coupon_expiration].present?
     is_test_mode = p[:is_test_mode] if p[:is_test_mode].present?
     product_selected = p[:product_selected].to_i if p[:product_selected].present?
-    promo.organization_id = current_user.id
     respond_to do |format|
       if not [nil,"checked"].include?(is_test_mode)
         format.html { render :new, status: :unprocessable_entity }
@@ -37,17 +40,35 @@ class PromosController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         flash[:promos_create_price_error] = "Valor do Cupom Inválido!"
       end
+      if ["type_product"].include?(coupon_type)
+        products = Product.where(organization_id: current_user.id)
+        if (product_selected < 1)
+          format.html { render :new, status: :unprocessable_entity }
+          flash[:promos_create_coupon_product_selected_error] = "Produto Inválido!"
+        end
+      end
+      #set promo params
+      promo.organization_id = Organization.where(user_id:current_user.id)[0].id
+      promo.coupon_price = coupon_price
+      promo.expiration = DateTime.now + coupon_expiration.days
+      promo.status = Promo.statuses[:enabled] if is_test_mode == nil
+      promo.status = Promo.statuses[:test_mode] if is_test_mode == "checked"
+      promo.save
+      #set coupon param
+      coupon = CouponProduct.new if coupon_type == "type_product"
+      coupon = CouponSale.new if coupon_type == "type_sale"
+      
+      coupon.promo_id = Promo.last.id
+      coupon.product_id = product_selected if coupon_type == "type_product"
+      coupon.coupon_type = CouponProduct.coupon_types["default"] if coupon_type == "type_product"  
+      coupon.status = CouponProduct.statuses["enabled"] if coupon_type == "type_product"
+      
+      coupon.coupon_type = CouponSale.coupon_types["default"] if coupon_type == "type_sale"
+      coupon.status = CouponSale.statuses["enabled"] if coupon_type == "type_sale"
+      coupon.save
+      
+      format.html { redirect_to action: :success }
     end
-    # @promo = Promo.new(promo_params)
-    # respond_to do |format|
-    #   if @promo.save
-    #     format.html { redirect_to promo_url(@promo), notice: "Promo was successfully created." }
-    #     format.json { render :show, status: :created, location: @promo }
-    #   else
-    #     format.html { render :new, status: :unprocessable_entity }
-    #     format.json { render json: @promo.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def destroy

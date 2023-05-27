@@ -1,4 +1,5 @@
 class ControlChannel < ApplicationCable::Channel
+
   def subscribed
     dados = []
     stream_from "control_channel"

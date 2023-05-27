@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "coupon/check_success" => "coupons#check_success"
   get "coupon/check_fail" => "coupons#check_fail"
   get "promo/new" => "promos#new"
+  get "promo/success" => "promos#success"
 
   post "promo/create" => "promos#create"
   

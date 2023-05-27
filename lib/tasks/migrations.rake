@@ -29,7 +29,7 @@ task :migrations do
 
   #sh('rails g scaffold client device_id:string')
   #sh('rails g scaffold organization_category name:string')
-  #sh('rails g scaffold organization name:string fee:decimal category:references')
+  #sh('rails g scaffold organization name:string fee:decimal category:references user:references')
   #sh('rails g scaffold product_category name:string')
   #sh('rails g scaffold product organization:references product_category:references price:decimal name:string')
   #sh('rails g scaffold coupon product:references coupon_type:integer value:decimal expiration:datetime status:integer')
