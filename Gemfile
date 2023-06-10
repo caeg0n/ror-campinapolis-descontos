@@ -15,7 +15,8 @@ gem "bootsnap", require: false
 gem "bootstrap",  '= 5.2.3'
 gem "simple_form", '= 5.2.0'
 gem "devise", "= 4.9.2"
-gem "rqrcode", "~> 2.1"
+gem "rqrcode", "= 2.1.2"
+gem "jwt", "= 2.7.0"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

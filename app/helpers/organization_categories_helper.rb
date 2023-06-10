@@ -1,2 +1,0 @@
-module OrganizationCategoriesHelper
-end

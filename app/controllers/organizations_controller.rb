@@ -15,19 +15,19 @@ class OrganizationsController < ApplicationController
   def admin
   end
   
-  def index
-    # @organizations = Organization.all
-  end
+  # def index
+  #   # @organizations = Organization.all
+  # end
 
-  def show
-  end
+  # def show
+  # end
 
   def new
     @organization = Organization.new
   end
 
-  def edit
-  end
+  # def edit
+  # end
 
   def create
     # @organization = Organization.new(organization_params)

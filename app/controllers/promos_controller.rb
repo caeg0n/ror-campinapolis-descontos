@@ -3,7 +3,6 @@ class PromosController < ApplicationController
   before_action :authenticate_user!, only: %i[ new ]
 
   def new
-    
   end
 
   def success
