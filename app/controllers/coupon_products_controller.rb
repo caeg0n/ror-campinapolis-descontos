@@ -50,7 +50,6 @@ class CouponProductsController < ApplicationController
   # DELETE /coupon_products/1 or /coupon_products/1.json
   def destroy
     @coupon_product.destroy
-
     respond_to do |format|
       format.html { redirect_to coupon_products_url, notice: "Coupon product was successfully destroyed." }
       format.json { head :no_content }

@@ -24,10 +24,10 @@ class CouponsController < ApplicationController
   end
 
   def validate
-    #session[:command] = "validate"
     if (session[:user_id] > 0 and current_user.id == session[:user_id])
-      message = {"command"=>"validate","device_id":session[:device_id]}
-      ActionCable.server.broadcast 'control_channel',message
+      session["user_id"] = current_user.id
+      cable_manager = CableService.new(session)
+      cable_manager.send_message("validate")
     else
       redirect_to root_path
     end

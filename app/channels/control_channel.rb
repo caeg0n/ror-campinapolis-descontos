@@ -7,19 +7,22 @@ class ControlChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    #resp_success = {}
-    #resp_fail = {}
-    #coupon_manager = CouponService.new({}) 
-    # device = data["message"]["device_id"]
+    resp_success = {}
+    resp_fail = {}
+    cable_manager = CableService.new({})
+    cable_manager.process_message(data)
+    # coupon_manager = CouponService.new({}) 
+    # # device = data["message"]["device_id"]
     # coupon_info = data["message"]["data"]
     # resp_success["device_id"] = device
     # resp_fail["device_id"] = device
     # resp_success["command"] = "redirect_with_coupon_check_success"
     # resp_fail["command"] = "redirect_with_coupon_check_fail"
     # if coupon_manager.check_client_coupon(coupon_info) == true then
-    #   ActionCable.server.broadcast('control_channel',resp_success)
-    #   else
-    #   ActionCable.server.broadcast('control_channel',resp_fail)
+    #   cable_manager = CableService.new(session)
+    #   #  ActionCable.server.broadcast('control_channel',resp_success)
+    # else
+    # #   ActionCable.server.broadcast('control_channel',resp_fail)
     # end
   end
 

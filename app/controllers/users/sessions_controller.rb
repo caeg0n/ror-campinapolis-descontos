@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 class Users::SessionsController < Devise::SessionsController
-include JwtHelper
   # before_action :configure_sign_in_params, only: [:create]
   def new
     super
@@ -8,12 +7,10 @@ include JwtHelper
 
   def after_sign_in_path_for(resource_or_scope)
     session["user_id"] = current_user.id
-    secret = Rails.application.credentials.jwt_secret
-    token = generate_jwt_token(session.to_h)        
-    message = {"command":"login","device_id":session[:device_id],"data":token}
-    ActionCable.server.broadcast 'control_channel',message
+    cable_manager = CableService.new(session) 
+    cable_manager.send_message("login")
     organization_admin_path
-  end 
+  end
 
   def after_sign_out_path_for(resource_or_scope)
     "/home"
