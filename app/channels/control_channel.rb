@@ -7,10 +7,10 @@ class ControlChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    resp_success = {}
-    resp_fail = {}
-    cable_manager = CableService.new({})
-    cable_manager.process_message(data)
+    # resp_success = {}
+    # resp_fail = {}
+    # cable_manager = CableService.new({})
+    # cable_manager.process_message(data)
     # coupon_manager = CouponService.new({}) 
     # # device = data["message"]["device_id"]
     # coupon_info = data["message"]["data"]

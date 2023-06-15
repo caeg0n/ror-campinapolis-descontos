@@ -11,8 +11,8 @@ class CableService
   end
 
   def process_message(token)
-    resp = decode_jwt_token(token["token"])
-    checkcupon(resp) if resp[0]["command"] == "checkcupon"
+    # resp = decode_jwt_token(token["token"])
+    # checkcupon(resp) if resp[0]["command"] == "checkcupon"
   end
 
 private
@@ -28,6 +28,7 @@ private
     return token
   end
 
+  #send
   def session_controller_login()
     message = {"command":"login","device_id":@session[:device_id],"data":fix_session}
     ActionCable.server.broadcast 'control_channel',message
@@ -38,9 +39,9 @@ private
     ActionCable.server.broadcast 'control_channel',message
   end
 
+  #receive
   def checkcupon(decoded_token)
     data = decoded_token[0]["data"]
-    puts data 
   end
 
 end
